@@ -1,0 +1,11 @@
+{
+    "image":"oaua/devbase:node",
+	"containerUser": "dev",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mhutchie.git-graph"
+			]
+		}
+	}
+}
