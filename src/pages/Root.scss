@@ -1,0 +1,78 @@
+:root {
+    * {
+        box-sizing: border-box;
+    }
+}
+html{
+    font-size: 16px;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
+    width: 100%;
+    
+    background-image: url('../assets/biere.png');
+    filter: blur(var(--drunk));
+}
+
+.main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    width: 100%;
+
+    background-color: rgba(255, 255, 255, 0.6);
+    // backdrop-filter: blur(1px);
+}
+
+.main-header--title{
+    font-size: 2rem;
+    margin: 0;
+    padding: 1rem;
+}
+.main-header--nav{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    flex: 1;
+}
+.main-header--nav--link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+
+    font-size: 1.6rem;
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    color: black;
+
+    transition: background 0.3s ease, color 0.3s ease;
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.438);
+    }
+
+    &.active{
+        background-color: rgba(255, 255, 255, 0.575);
+    }
+
+    &:active{
+        background-color: white;
+    }
+}
