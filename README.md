@@ -9,6 +9,7 @@ Ce project utilise la précieuse api : (https://www.openbrewerydb.org)
 
 ### Architectures des fichiers  
 
+|_ helpers : fonctions pratiques
 |_ components : les composants utilisés dans les pages
 |_ loaders : les fonctions d'appel à l'API  
 |_ pages : les composants de pages  
@@ -24,6 +25,9 @@ L'application ayant été réalisé en TDD (autant que possible), des fichiers *
 - Les pages utilisant un loader, s'affiche sans attendre la fin de la requête
 - A la fin de la requête, les composants dépendants sont affichés
 
-## La recherche
+## Fonction supplémentaire
 
-- le endpoints de recherche étant cassé une autre solution a été trouvée, que l'on trouvera dans les loaders (ça serait dommage de s'arrêter au readme)
+Enchainer les corrections de TP, qui portent sur la bière, ça donne envie de se désaltérer.
+Heureusement, ce projet propose de déguster une bière en juste un clic.
+Attention toutefois, il faut savoir en profiter avec modération... 
+Si vous ne vous sentez plus très bie, un refresh porte bien son nom.
