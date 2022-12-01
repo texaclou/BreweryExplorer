@@ -1,0 +1,42 @@
+.BreweryListItem{
+    position: relative;
+    left: 0rem;
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 1rem;
+
+    background-color: rgb(58, 32, 5);
+    color: white;
+
+    border-radius: 1rem;
+    box-shadow: -.3rem .6rem 3px #00000008;
+    overflow: hidden;
+    transition: left .3s ease, background-color .1s linear;
+
+    &:hover{
+        left: -.5rem;
+    }
+
+    &:active{
+        background-color: black
+    }
+}
+
+.BreweryListItem--link{
+    flex:1;
+    padding: 1rem;
+    text-decoration: none;
+    color:inherit;
+    font-size: 1.4rem;
+}
+
+.BreweryListItem--city{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: .5rem 1rem;
+    color: black;
+    background-color: rgb(255, 158, 56);
+}
