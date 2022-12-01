@@ -1,10 +1,12 @@
 import { defer } from "react-router-dom"
+import { Pagination } from "../helpers/pagination"
+import { $enum } from "ts-enum-util"
 
 export interface BreweryType {
     [key: string]: any,
     id: string,
     name: string,
-    type: string,
+    type: TypeOfBrewery,
     street: string,
     city: string,
     state: string,
@@ -16,6 +18,19 @@ export interface BreweryType {
     website: URL | undefined
 }
 
+export enum TypeOfBrewery {
+    any,
+    micro,
+    nano,
+    regional,
+    brewpub,
+    large,
+    planning,
+    bar,
+    contract,
+    proprietor,
+    closed,
+}
 
 interface BreweryRawType {
     id: string,
@@ -42,7 +57,7 @@ const treatData = (dataIn: BreweryRawType): BreweryType => {
     const dataOut: BreweryType = {
         id: dataIn.id,
         name: dataIn.name,
-        type: dataIn.brewery_type,
+        type: $enum(TypeOfBrewery).getValueOrDefault(dataIn.brewery_type, TypeOfBrewery.any),
         street: dataIn.street,
         city: dataIn.city,
         state: dataIn.state,
@@ -73,53 +88,21 @@ export const loadRandomBrewery = async (): Promise<BreweryType> => {
 export const deferLoadRandomBrewery = () => defer({ promise: loadRandomBrewery() })
 
 // Load all the breweries with pagination
-export const loadAllBreweries = async (pagination: Pagination): Promise<BreweryType[]> => {
-    const endpoint = `https://api.openbrewerydb.org/breweries/?page=${pagination.page ?? 1}&per_page=${pagination.perPage ?? 50}`
-    const rawBreweries = await fetch(endpoint).then(r => r.json()) as BreweryRawType[]
+export const loadAllBreweries = async (pagination: Pagination, type: TypeOfBrewery): Promise<BreweryType[]> => {
+    const endpoint = new URL("https://api.openbrewerydb.org/breweries/")
+    endpoint.searchParams.set("page", (pagination.page ?? 1).toString())
+    endpoint.searchParams.set("per_page", (pagination.perPage ?? 20).toString())
+    if (type !== TypeOfBrewery.any) {
+        endpoint.searchParams.set("by_type", TypeOfBrewery[type])
+    }
+    // const endpoint = `https://api.openbrewerydb.org/breweries/?page=${pagination.page ?? 1}&per_page=${pagination.perPage ?? 50}`
+    const rawBreweries = await fetch(endpoint.toString()).then(r => r.json()) as BreweryRawType[]
     return rawBreweries.map(b => treatData(b))
 }
-export const deferLoadAllBreweries = (pagination: Pagination) => defer({ promise: loadAllBreweries(pagination) })
-
-interface Pagination {
-    page: number | undefined,
-    perPage: number | undefined
-}
-
-export const parsePagination = (urlString: string): Pagination => {
-    const url = new URL(urlString)
-
-    const rawPage = url.searchParams.get("page")
-    const page = rawPage ? parseInt(rawPage) : undefined
-
-    const rawPerPage = url.searchParams.get("per_page")
-    const perPage = rawPerPage ? parseInt(rawPerPage) : undefined
-
-    return { page, perPage }
-}
-
-interface PageLinks {
-    previous: URL | undefined,
-    next: URL
-}
-export const getPaginationURL = (urlString: string): PageLinks => {
-    const { page } = parsePagination(urlString)
+export const deferLoadAllBreweries = (pagination: Pagination, type: TypeOfBrewery) => defer({ promise: loadAllBreweries(pagination, type), type })
 
 
-    // previous page
-    let previous
-    if (page === undefined || page === 1) {
-        previous = undefined
-    }
-    else {
-        const previousPageString = (page - 1).toString()
-        previous = new URL(urlString)
-        previous.searchParams.set("page", previousPageString)
-    }
 
-    // next page
-    const nextPage = (page ?? 1) + 1
-    const next = new URL(urlString)
-    next.searchParams.set("page", nextPage.toString())
 
-    return { previous, next }
-}
+
+

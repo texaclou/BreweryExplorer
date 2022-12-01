@@ -1,14 +1,14 @@
 import React from 'react'
 import { queryByText, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
 import BreweryDetail from './BreweryDetail'
-import { BreweryType } from '../loaders/BreweryLoader'
+import { BreweryType, TypeOfBrewery } from '../loaders/BreweryLoader'
 
 test('load and display brewery info', async () => {
 
   const brewerySample: BreweryType = {
     id: 'component-brewing-co-milwaukee',
     name: 'Component Brewing Co',
-    type: 'micro',
+    type: TypeOfBrewery.micro,
     street: '2018 S 1st St Ste 207',
     city: 'Milwaukee',
     state: 'Wisconsin',
