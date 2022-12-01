@@ -9,7 +9,7 @@ const DetailPage = () => {
 
     return (
         <div data-testid="detailPage">
-            <React.Suspense fallback={<p>Loading package location...</p>}>
+            <React.Suspense fallback={<p>Loading Brewery</p>}>
                 <Await resolve={promise}>
                     {(brewery: BreweryType) => (
                         <BreweryDetail brewery={brewery} />

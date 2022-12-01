@@ -1,23 +1,25 @@
 import React from 'react'
-import { BreweryType } from '../loaders/BreweryLoader'
+import { BreweryType, TypeOfBrewery } from '../loaders/BreweryLoader'
+import './BreweryDetail.scss'
 
 interface Props {
     brewery: BreweryType
 }
 
-const BreweryDetail = (props: Props) => {
+const BreweryDetail = ({brewery}: Props) => {
     return (
         <div className="BreweryDetail">
-            <h2>{props.brewery.name}</h2>
-            <p>{props.brewery.street}, {props.brewery.city}</p>
-            <p>{props.brewery.state} {props.brewery.postalCode}, {props.brewery.country}</p>
+            <p className='BreweryDetail--type'>{TypeOfBrewery[brewery.type]}</p>
+            <h2 className='BreweryDetail--name'>{brewery.name}</h2>
+            <p className='BreweryDetail--address'>{brewery.street}, {brewery.city}</p>
+            <p className='BreweryDetail--address'>{brewery.state} {brewery.postalCode}, {brewery.country}</p>
 
-            {props.brewery.phone &&
-                <p><a href={`tel:+1${props.brewery.phone}`}>{props.brewery.phone}</a></p>
+            {brewery.phone &&
+                <a href={`tel:+1${brewery.phone}`} className='BreweryDetail--phone'>{brewery.phone}</a>
             }
 
-            {props.brewery.website &&
-                <p><a href={props.brewery.website.href}>{props.brewery.website.hostname}</a></p>
+            {brewery.website &&
+                <a className='BreweryDetail--website' href={brewery.website.href}>{brewery.website.hostname}</a>
             }
         </div>
     )
