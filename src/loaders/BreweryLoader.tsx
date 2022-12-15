@@ -28,7 +28,7 @@ export enum TypeOfBrewery {
     planning,
     bar,
     contract,
-    proprietor,
+    proprieter,
     closed,
 }
 

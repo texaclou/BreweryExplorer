@@ -3,21 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.3",
+
+    "@types/jest": "^29.2.4",
+    "@types/node": "^18.11.11",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "leaflet": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.0",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "5.0.1",
-    "sass": "^1.56.1",
-    "ts-enum-util": "^4.0.2",
-    "typescript": "^4.8.4",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,5 +38,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/leaflet": "^1.9.0",
+    "@types/react-leaflet": "^2.8.2",
+    "sass": "^1.56.1",
+    "ts-enum-util": "^4.0.2",
+    "typescript": "^4.8.4"
   }
 }
